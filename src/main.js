@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Hover scale effects on interactive elements
-    const interactiveTargets = document.querySelectorAll('a, button, .pill, .btn-with-icon-pill, .impact-card, .service-row-card');
+    const interactiveTargets = document.querySelectorAll('a, button, .pill, .btn-with-icon-pill, .impact-card, .service-row-card, .circular-text-wrap');
     interactiveTargets.forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -807,4 +807,72 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
+  // ==========================================================================
+  // REACT BITS CIRCULAR TEXT COMPONENT ENGINE
+  // ==========================================================================
+  const circularTextElements = document.querySelectorAll('.circular-text');
+
+  circularTextElements.forEach(el => {
+    const textStr = el.getAttribute('data-text') || 'WEBBIT*AI*AUTOMATION*';
+    const spinDuration = parseFloat(el.getAttribute('data-spin-duration')) || 20;
+    const onHoverMode = el.getAttribute('data-hover') || 'speedUp';
+    const letters = Array.from(textStr);
+    const totalLetters = letters.length;
+    const angleStep = 360 / totalLetters;
+
+    el.innerHTML = letters.map((letter, i) => {
+      const rotationDeg = angleStep * i;
+      const transform = `rotateZ(${rotationDeg}deg) translateY(-64px)`;
+      return `<span style="transform: ${transform}; -webkit-transform: ${transform};">${letter === ' ' ? '&nbsp;' : letter}</span>`;
+    }).join('');
+
+    if (typeof gsap !== 'undefined') {
+      const tween = gsap.to(el, {
+        rotate: 360,
+        duration: spinDuration,
+        ease: 'none',
+        repeat: -1
+      });
+
+      const parentWrap = el.closest('.circular-text-wrap') || el;
+
+      parentWrap.addEventListener('mouseenter', () => {
+        let targetTimeScale = 1;
+        let scaleVal = 1;
+
+        switch (onHoverMode) {
+          case 'slowDown':
+            targetTimeScale = 0.35;
+            break;
+          case 'speedUp':
+            targetTimeScale = 4;
+            break;
+          case 'pause':
+            tween.pause();
+            return;
+          case 'goBonkers':
+            targetTimeScale = 12;
+            scaleVal = 1.12;
+            break;
+          default:
+            targetTimeScale = 4;
+        }
+
+        gsap.to(tween, { timeScale: targetTimeScale, duration: 0.4, ease: 'power2.out' });
+        if (scaleVal !== 1) {
+          gsap.to(el, { scale: scaleVal, duration: 0.3, ease: 'back.out(1.5)' });
+        }
+      });
+
+      parentWrap.addEventListener('mouseleave', () => {
+        if (onHoverMode === 'pause') {
+          tween.play();
+        } else {
+          gsap.to(tween, { timeScale: 1, duration: 0.5, ease: 'power2.out' });
+          gsap.to(el, { scale: 1, duration: 0.3, ease: 'power2.out' });
+        }
+      });
+    }
+  });
 });
