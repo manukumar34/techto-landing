@@ -1776,7 +1776,7 @@ button, input {
 
 /* Card 2: Panoramic Horizon Card */
 .ed-card-panoramic {
-  background: url('assets/card-horizon.png') center/cover no-repeat;
+  background: #080914;
   border-radius: 36px;
   padding: 60px 48px;
   min-height: 320px;
@@ -1787,21 +1787,37 @@ button, input {
   margin-bottom: 40px;
   position: relative;
   color: #ffffff;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   overflow: hidden;
+}
+
+.aurora-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aurora-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .ed-card-panoramic::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.45) 100%);
-  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+  z-index: 2;
 }
 
 .ed-pano-left, .ed-pano-right {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .ed-pano-title {
