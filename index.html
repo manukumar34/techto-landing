@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TECHTO - Canada’s Most Connected Tech Community</title>
+  <meta name="description" content="Meet leaders, share ideas, and connect with people who can open new doors in Canada's most connected tech community." />
+  <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+  <!-- GSAP Animation Library for PillNav & Motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- Lenis Super Smooth Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <!-- MAGIC UI SMOOTH CURSOR COMPONENT -->
+  <div class="smooth-cursor-container" aria-hidden="true">
+    <div class="smooth-cursor-dot" id="cursor-dot"></div>
+    <div class="smooth-cursor-follower" id="cursor-follower"></div>
+  </div>
+
+  <!-- Ambient Top Lime/Yellow Glow -->
+  <div class="techto-top-glow" aria-hidden="true"></div>
+
+  <!-- REACT BITS PILL NAV HEADER INTEGRATION -->
+  <div class="pill-nav-container">
+    <nav class="pill-nav" aria-label="Primary" style="--base: #000000; --pill-bg: #ffffff; --hover-text: #ffffff; --pill-text: #000000;">
+      <!-- Pill Logo Circle -->
+      <a class="pill-logo" href="index.html" aria-label="Home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#d4ff00" stroke="#ffffff" stroke-width="1.5"/>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Items Capsule -->
+      <div class="pill-nav-items desktop-only">
+        <ul class="pill-list" role="menubar">
+          <li role="none">
+            <a role="menuitem" href="index.html" class="pill is-active" aria-label="Home">
+              <span class="hover-circle" aria-hidden="true"></span>
+              <span class="label-stack">
+                <span class="pill-label">Home</span>
+                <span class="pill-label-hover" aria-hidden="true">Home</span>
+              </span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="ai-automation.html" class="pill" aria-label="AI Automation">
+              <span class="hover-circle" aria-hidden="true"></span>
+              <span class="label-stack">
+                <span class="pill-label">AI Automation</span>
+                <span class="pill-label-hover" aria-hidden="true">AI Automation</span>
+              </span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#services" class="pill" aria-label="Solutions">
+              <span class="hover-circle" aria-hidden="true"></span>
+              <span class="label-stack">
+                <span class="pill-label">Solutions</span>
+                <span class="pill-label-hover" aria-hidden="true">Solutions</span>
+              </span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#impact" class="pill" aria-label="Impact">
+              <span class="hover-circle" aria-hidden="true"></span>
+              <span class="label-stack">
+                <span class="pill-label">Impact</span>
+                <span class="pill-label-hover" aria-hidden="true">Impact</span>
+              </span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#book-call" class="pill pill-cta" aria-label="Book Call">
+              <span class="hover-circle" aria-hidden="true"></span>
+              <span class="label-stack">
+                <span class="pill-label">Book Strategy Call</span>
+                <span class="pill-label-hover" aria-hidden="true">Book Strategy Call</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button class="mobile-menu-button mobile-only" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Popover Drawer -->
+    <div class="mobile-menu-popover mobile-only" style="--base: #000000; --pill-bg: #ffffff; --hover-text: #ffffff; --pill-text: #000000;">
+      <ul class="mobile-menu-list">
+        <li><a href="index.html" class="mobile-menu-link is-active">Home</a></li>
+        <li><a href="ai-automation.html" class="mobile-menu-link">AI Automation</a></li>
+        <li><a href="#services" class="mobile-menu-link">Solutions</a></li>
+        <li><a href="#impact" class="mobile-menu-link">Impact</a></li>
+        <li><a href="#book-call" class="mobile-menu-link">Book Strategy Call</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="techto-hero-section" id="hero">
+      <div class="techto-hero-container">
+        <!-- Large Editorial Serif Headline -->
+        <h1 class="techto-serif-title">
+          Scale Your Enterprise with<br />
+          <span class="rotating-text-badge" id="rotating-text-hero" data-words='["AI Automation", "Global Delivery", "Offshore Teams", "Ad Campaigns", "PropTech Suite"]'>
+            <span class="text-rotate-word">
+              <span class="text-rotate-char">A</span><span class="text-rotate-char">I</span><span class="text-rotate-space"> </span><span class="text-rotate-char">A</span><span class="text-rotate-char">u</span><span class="text-rotate-char">t</span><span class="text-rotate-char">o</span><span class="text-rotate-char">m</span><span class="text-rotate-char">a</span><span class="text-rotate-char">t</span><span class="text-rotate-char">i</span><span class="text-rotate-char">o</span><span class="text-rotate-char">n</span>
+            </span>
+          </span>
+        </h1>
+
+        <!-- Centered Subtext & CTA Button Stack -->
+        <div class="techto-hero-content-stack">
+          <p class="techto-subtext-main">
+            Automate workflows, launch high-converting ad campaigns, and build dedicated offshore engineering teams from India.
+          </p>
+          <a href="#services" class="btn-with-icon-pill">
+            <span class="btn-label">Explore Solutions</span>
+            <div class="btn-icon-circle" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Animated 3D Perspective Floor Grid -->
+      <div class="techto-floor-grid" aria-hidden="true"></div>
+    </section>
+
+    <!-- AI COMPANIES & TECHNOLOGIES INFINITE SCROLLING MARQUEE -->
+    <section class="techto-ai-tech-section">
+      <div class="container text-center">
+        <div class="editorial-tag-pill" style="margin-bottom: 12px;">AI & ENTERPRISE ECOSYSTEM</div>
+        <h2 class="ai-tech-title">AI Models & Technologies We Engineer With</h2>
+      </div>
+
+      <!-- Infinite Marquee Container -->
+      <div class="ai-tech-marquee-wrapper" aria-label="AI Technologies Marquee">
+        <div class="ai-tech-marquee-track">
+          <!-- Item 1: OpenAI -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#10a37f"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0814 4.7792-2.7582a.7954.7954 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.5 0 0 1-4.4954 4.4954zm-9.6607-4.1254a4.4707 4.4707 0 0 1-.5351-3.0137l.142.0852 4.7839 2.7582a.7954.7954 0 0 0 .7854 0l5.8336-3.3692V17.133a.0663.0663 0 0 1-.0284.0568l-4.836 2.7913a4.504 4.5 0 0 1-6.1454-1.5542zM2.3413 9.7121a4.466 4.466 0 0 1 2.3413-2.0076v5.8239a.7859.7859 0 0 0 .3927.6813l5.8336 3.3692-2.02 1.1686a.0663.0663 0 0 1-.0615.0047l-4.836-2.7913a4.504 4.5 0 0 1-1.6488-6.2488zm16.597-1.6384l-5.8336-3.3692 2.02-1.1686a.0663.0663 0 0 1 .0615-.0047l4.836 2.7913a4.504 4.5 0 0 1 1.6488 6.2488 4.4755 4.4755 0 0 1-2.3413 2.0076V8.755a.7859.7859 0 0 0-.3914-.6813zm2.3082-2.7345l-.142-.0852-4.7839-2.7582a.7954.7954 0 0 0-.7854 0l-5.8336 3.3692V4.5428a.0663.0663 0 0 1 .0284-.0568l4.836-2.7913a4.504 4.5 0 0 1 6.6805 4.568zM12 14.1849l-3.3692-1.9463 3.3692-1.9463 3.3692 1.9463zm-3.8687-7.2344a4.4755 4.4755 0 0 1 2.8764 1.0408l-.1419.0814-4.7792 2.7582a.7954.7954 0 0 0-.3927.6813v6.7369l-2.02-1.1686a.071.071 0 0 1-.038-.052V9.444a4.504 4.5 0 0 1 4.4954-4.4935z"/></svg>
+            <span>OpenAI GPT-4o</span>
+          </div>
+          <!-- Item 2: Anthropic Claude -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#d97706"><path d="M13.727 3.003L4.444 19.997h3.42l1.92-3.66h8.432l1.92 3.66h3.42L14.273 3.003h-.546zm-2.58 10.597l2.853-5.438 2.853 5.438h-5.706z"/></svg>
+            <span>Anthropic Claude 3.5</span>
+          </div>
+          <!-- Item 3: Google Gemini -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1a73e8"><path d="M12 24c0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12 0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12z"/></svg>
+            <span>Google Gemini</span>
+          </div>
+          <!-- Item 4: Meta Llama -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0668E1"><path d="M16.924 3.001c-1.922 0-3.693 1.025-4.924 2.658C10.769 4.026 8.998 3.001 7.076 3.001 3.167 3.001 0 6.168 0 10.077c0 5.253 4.673 9.771 11.45 10.871a.999.999 0 0 0 1.1 0C19.327 19.848 24 15.33 24 10.077c0-3.909-3.167-7.076-7.076-7.076zM7.076 17.077c-2.8 0-5.076-2.276-5.076-5.076 0-2.8 2.276-5.076 5.076-5.076 1.48 0 2.846.657 3.757 1.764L9.04 10.485c-.417-.674-1.155-1.077-1.964-1.077-1.258 0-2.276 1.018-2.276 2.276s1.018 2.276 2.276 2.276c.809 0 1.547-.403 1.964-1.077l1.793 1.796c-.911 1.107-2.277 1.764-3.757 1.764zm9.848 0c-1.48 0-2.846-.657-3.757-1.764l1.793-1.796c.417.674 1.155 1.077 1.964 1.077 1.258 0 2.276-1.018 2.276-2.276s-1.018-2.276-2.276-2.276c-.809 0-1.547.403-1.964 1.077l-1.793-1.796c.911-1.107 2.277-1.764 3.757-1.764 2.8 0 5.076 2.276 5.076 5.076 0 2.8-2.276 5.076-5.076 5.076z"/></svg>
+            <span>Meta Llama 3</span>
+          </div>
+          <!-- Item 5: LangChain -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span>LangChain</span>
+          </div>
+          <!-- Item 6: Pinecone -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#6567Fa"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5l5.5 3.44L12 11.38 6.5 7.94 12 4.5zm-6 5.57l5 3.13v5.86l-5-3.13v-5.86zm12 5.86l-5 3.13v-5.86l5-3.13v5.86z"/></svg>
+            <span>Pinecone Vector DB</span>
+          </div>
+          <!-- Item 7: Salesforce -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00A1E0"><path d="M19.388 9.77a5.952 5.952 0 0 0-4.062-4.57 6.452 6.452 0 0 0-6.903 1.83 5.485 5.485 0 0 0-4.981 1.34 5.342 5.342 0 0 0-1.492 4.67A5.96 5.96 0 0 0 0 18.73c0 3.19 2.59 5.27 5.78 5.27h12.44A5.78 5.78 0 0 0 24 18.22c0-3.05-2.36-5.26-4.612-8.45z"/></svg>
+            <span>Salesforce CRM</span>
+          </div>
+          <!-- Item 8: HubSpot -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF7A59"><path d="M18.16 6.84a3.84 3.84 0 1 0-3.32 5.76h.05l-2.61 3.5a3.8 3.8 0 0 0-1.48-.3 3.84 3.84 0 1 0 3.84 3.84v-.23l3.05-4.08a3.84 3.84 0 0 0 .47-8.49zM6.84 19.68a2.16 2.16 0 1 1 2.16-2.16 2.16 2.16 0 0 1-2.16 2.16zm11.32-12.84a2.16 2.16 0 1 1 2.16-2.16 2.16 2.16 0 0 1-2.16 2.16z"/></svg>
+            <span>HubSpot Automation</span>
+          </div>
+          <!-- Item 9: PyTorch / Python -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.897 0c-5.1 0-4.793 2.215-4.793 2.215l.006 2.302h4.877v.693H5.105S1.85 4.845 1.85 9.948c0 5.103 2.83 4.927 2.83 4.927l1.691-.001v-2.428s-.093-2.905 2.849-2.905h4.869s2.756.046 2.756-2.664V4.43S17.433 0 11.897 0zm-2.61 1.48a.952.952 0 1 1 0 1.905.952.952 0 0 1 0-1.905z" fill="#3776AB"/><path d="M12.103 24c5.1 0 4.793-2.215 4.793-2.215l-.006-2.302h-4.877v-.693h6.882s3.255.365 3.255-4.738c0-5.103-2.83-4.927-2.83-4.927l-1.691.001v2.428s.093 2.905-2.849 2.905h-4.869s-2.756-.046-2.756 2.664v2.449S6.567 24 12.103 24zm2.61-1.48a.952.952 0 1 1 0-1.905.952.952 0 0 1 0 1.905z" fill="#FFD43B"/></svg>
+            <span>PyTorch & Python</span>
+          </div>
+          <!-- Item 10: AWS Cloud AI -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M13.438 10.638c-.373.12-.862.18-1.468.18-1.57 0-2.355-.66-2.355-1.98 0-1.393.898-2.09 2.693-2.09.412 0 .807.03 1.185.09v3.8zm.015 6.07c-1.378 1.135-3.327 1.636-5.103 1.636-3.23 0-6.15-1.272-8.35-3.415l1.196-.94c1.865 1.81 4.36 2.89 7.154 2.89 1.5 0 3.125-.403 4.343-1.306l.76 1.135zm9.362-2.396c-.347.457-.9.734-1.46.734-.848 0-1.42-.51-1.695-1.517l-3.364-10.995h3.04l2.09 7.73 2.1-7.73h2.95l-3.66 11.778z"/></svg>
+            <span>AWS Bedrock AI</span>
+          </div>
+
+          <!-- DUPLICATE TRACK FOR SEAMLESS INFINITE LOOP -->
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#10a37f"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0814 4.7792-2.7582a.7954.7954 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.5 0 0 1-4.4954 4.4954zm-9.6607-4.1254a4.4707 4.4707 0 0 1-.5351-3.0137l.142.0852 4.7839 2.7582a.7954.7954 0 0 0 .7854 0l5.8336-3.3692V17.133a.0663.0663 0 0 1-.0284.0568l-4.836 2.7913a4.504 4.5 0 0 1-6.1454-1.5542zM2.3413 9.7121a4.466 4.466 0 0 1 2.3413-2.0076v5.8239a.7859.7859 0 0 0 .3927.6813l5.8336 3.3692-2.02 1.1686a.0663.0663 0 0 1-.0615.0047l-4.836-2.7913a4.504 4.5 0 0 1-1.6488-6.2488zm16.597-1.6384l-5.8336-3.3692 2.02-1.1686a.0663.0663 0 0 1 .0615-.0047l4.836 2.7913a4.504 4.5 0 0 1 1.6488 6.2488 4.4755 4.4755 0 0 1-2.3413 2.0076V8.755a.7859.7859 0 0 0-.3914-.6813zm2.3082-2.7345l-.142-.0852-4.7839-2.7582a.7954.7954 0 0 0-.7854 0l-5.8336 3.3692V4.5428a.0663.0663 0 0 1 .0284-.0568l4.836-2.7913a4.504 4.5 0 0 1 6.6805 4.568zM12 14.1849l-3.3692-1.9463 3.3692-1.9463 3.3692 1.9463zm-3.8687-7.2344a4.4755 4.4755 0 0 1 2.8764 1.0408l-.1419.0814-4.7792 2.7582a.7954.7954 0 0 0-.3927.6813v6.7369l-2.02-1.1686a.071.071 0 0 1-.038-.052V9.444a4.504 4.5 0 0 1 4.4954-4.4935z"/></svg>
+            <span>OpenAI GPT-4o</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#d97706"><path d="M13.727 3.003L4.444 19.997h3.42l1.92-3.66h8.432l1.92 3.66h3.42L14.273 3.003h-.546zm-2.58 10.597l2.853-5.438 2.853 5.438h-5.706z"/></svg>
+            <span>Anthropic Claude 3.5</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1a73e8"><path d="M12 24c0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12 0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12z"/></svg>
+            <span>Google Gemini</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#0668E1"><path d="M16.924 3.001c-1.922 0-3.693 1.025-4.924 2.658C10.769 4.026 8.998 3.001 7.076 3.001 3.167 3.001 0 6.168 0 10.077c0 5.253 4.673 9.771 11.45 10.871a.999.999 0 0 0 1.1 0C19.327 19.848 24 15.33 24 10.077c0-3.909-3.167-7.076-7.076-7.076zM7.076 17.077c-2.8 0-5.076-2.276-5.076-5.076 0-2.8 2.276-5.076 5.076-5.076 1.48 0 2.846.657 3.757 1.764L9.04 10.485c-.417-.674-1.155-1.077-1.964-1.077-1.258 0-2.276 1.018-2.276 2.276s1.018 2.276 2.276 2.276c.809 0 1.547-.403 1.964-1.077l1.793 1.796c-.911 1.107-2.277 1.764-3.757 1.764zm9.848 0c-1.48 0-2.846-.657-3.757-1.764l1.793-1.796c.417.674 1.155 1.077 1.964 1.077 1.258 0 2.276-1.018 2.276-2.276s-1.018-2.276-2.276-2.276c-.809 0-1.547.403-1.964 1.077l-1.793-1.796c.911-1.107 2.277-1.764 3.757-1.764 2.8 0 5.076 2.276 5.076 5.076 0 2.8-2.276 5.076-5.076 5.076z"/></svg>
+            <span>Meta Llama 3</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span>LangChain</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#6567Fa"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5l5.5 3.44L12 11.38 6.5 7.94 12 4.5zm-6 5.57l5 3.13v5.86l-5-3.13v-5.86zm12 5.86l-5 3.13v-5.86l5-3.13v5.86z"/></svg>
+            <span>Pinecone Vector DB</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00A1E0"><path d="M19.388 9.77a5.952 5.952 0 0 0-4.062-4.57 6.452 6.452 0 0 0-6.903 1.83 5.485 5.485 0 0 0-4.981 1.34 5.342 5.342 0 0 0-1.492 4.67A5.96 5.96 0 0 0 0 18.73c0 3.19 2.59 5.27 5.78 5.27h12.44A5.78 5.78 0 0 0 24 18.22c0-3.05-2.36-5.26-4.612-8.45z"/></svg>
+            <span>Salesforce CRM</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF7A59"><path d="M18.16 6.84a3.84 3.84 0 1 0-3.32 5.76h.05l-2.61 3.5a3.8 3.8 0 0 0-1.48-.3 3.84 3.84 0 1 0 3.84 3.84v-.23l3.05-4.08a3.84 3.84 0 0 0 .47-8.49zM6.84 19.68a2.16 2.16 0 1 1 2.16-2.16 2.16 2.16 0 0 1-2.16 2.16zm11.32-12.84a2.16 2.16 0 1 1 2.16-2.16 2.16 2.16 0 0 1-2.16 2.16z"/></svg>
+            <span>HubSpot Automation</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.897 0c-5.1 0-4.793 2.215-4.793 2.215l.006 2.302h4.877v.693H5.105S1.85 4.845 1.85 9.948c0 5.103 2.83 4.927 2.83 4.927l1.691-.001v-2.428s-.093-2.905 2.849-2.905h4.869s2.756.046 2.756-2.664V4.43S17.433 0 11.897 0zm-2.61 1.48a.952.952 0 1 1 0 1.905.952.952 0 0 1 0-1.905z" fill="#3776AB"/><path d="M12.103 24c5.1 0 4.793-2.215 4.793-2.215l-.006-2.302h-4.877v-.693h6.882s3.255.365 3.255-4.738c0-5.103-2.83-4.927-2.83-4.927l-1.691.001v2.428s.093 2.905-2.849 2.905h-4.869s-2.756-.046-2.756 2.664v2.449S6.567 24 12.103 24zm2.61-1.48a.952.952 0 1 1 0-1.905.952.952 0 0 1 0 1.905z" fill="#FFD43B"/></svg>
+            <span>PyTorch & Python</span>
+          </div>
+          <div class="ai-tech-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF9900"><path d="M13.438 10.638c-.373.12-.862.18-1.468.18-1.57 0-2.355-.66-2.355-1.98 0-1.393.898-2.09 2.693-2.09.412 0 .807.03 1.185.09v3.8zm.015 6.07c-1.378 1.135-3.327 1.636-5.103 1.636-3.23 0-6.15-1.272-8.35-3.415l1.196-.94c1.865 1.81 4.36 2.89 7.154 2.89 1.5 0 3.125-.403 4.343-1.306l.76 1.135zm9.362-2.396c-.347.457-.9.734-1.46.734-.848 0-1.42-.51-1.695-1.517l-3.364-10.995h3.04l2.09 7.73 2.1-7.73h2.95l-3.66 11.778z"/></svg>
+            <span>AWS Bedrock AI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & SOLUTIONS SECTION (EXACT REFERENCE LAYOUT) -->
+    <section class="services-list-section" id="services">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="services-list-header">
+          <h2 class="services-serif-headline">
+            Solutions 💣
+          </h2>
+          
+          <!-- Filter Tabs Bar -->
+          <div class="services-tabs-bar">
+            <button class="services-tab active">All Solutions</button>
+            <button class="services-tab">AI Automation</button>
+            <button class="services-tab">Performance Marketing</button>
+            <button class="services-tab">Offshore Teams</button>
+            <button class="services-tab">Real Estate</button>
+          </div>
+        </div>
+
+        <!-- Service Item 1: AI Automation & Conversational Bots -->
+        <div class="service-row-card reveal">
+          <div class="service-left-box">
+            <div class="service-stat-num">01</div>
+            <div class="service-stat-sub">AI VOICE</div>
+          </div>
+          <div class="service-mid-content">
+            <h3 class="service-highlight-title">AI Automation & Conversational Bots</h3>
+            <p class="service-desc-text">
+              Deploy human-like autonomous voice agents, chatbots, and CRM workflow pipelines that qualify inbound leads and book appointments 24/7.
+            </p>
+          </div>
+          <div class="service-right-specs">
+            <div class="service-spec-list">
+              <div class="service-spec-item"><span class="service-spec-icon">🕒</span> Sub-200ms Voice Agent Latency</div>
+              <div class="service-spec-item"><span class="service-spec-icon">📍</span> Salesforce, HubSpot & Custom CRM</div>
+              <div class="service-spec-item"><span class="service-spec-icon">🏷️</span> Performance Guaranteed</div>
+            </div>
+            <a href="ai-automation.html" class="btn-techto-black"><span>Explore AI</span></a>
+          </div>
+        </div>
+
+        <!-- Service Item 2: Performance Marketing -->
+        <div class="service-row-card reveal">
+          <div class="service-left-box">
+            <div class="service-stat-num">02</div>
+            <div class="service-stat-sub">GROWTH</div>
+          </div>
+          <div class="service-mid-content">
+            <h3 class="service-highlight-title">Performance Marketing & Ad Funnels</h3>
+            <p class="service-desc-text">
+              Turn digital ad spend into predictable qualified pipeline through Google Ads, Meta Ads, conversion rate audits, and landing page optimization.
+            </p>
+          </div>
+          <div class="service-right-specs">
+            <div class="service-spec-list">
+              <div class="service-spec-item"><span class="service-spec-icon">🕒</span> +340% Lead Growth Rate</div>
+              <div class="service-spec-item"><span class="service-spec-icon">📍</span> Google, Meta, LinkedIn & TikTok</div>
+              <div class="service-spec-item"><span class="service-spec-icon">🏷️</span> Full Campaign Audit Included</div>
+            </div>
+            <a href="#book-call" class="btn-techto-black"><span>Launch Campaign</span></a>
+          </div>
+        </div>
+
+        <!-- Service Item 3: Offshore Engineering & Dedicated Teams -->
+        <div class="service-row-card reveal">
+          <div class="service-left-box">
+            <div class="service-stat-num">03</div>
+            <div class="service-stat-sub">INDIA HUB</div>
+          </div>
+          <div class="service-mid-content">
+            <h3 class="service-highlight-title">Dedicated Offshore Engineering Teams</h3>
+            <p class="service-desc-text">
+              Scale your development, marketing, and back-office operations with dedicated India specialists backed by senior project management.
+            </p>
+          </div>
+          <div class="service-right-specs">
+            <div class="service-spec-list">
+              <div class="service-spec-item"><span class="service-spec-icon">🕒</span> &lt; 14 Days Team Onboarding</div>
+              <div class="service-spec-item"><span class="service-spec-icon">📍</span> Dedicated India Delivery Squads</div>
+              <div class="service-spec-item"><span class="service-spec-icon">🏷️</span> Up to 60% Overhead Savings</div>
+            </div>
+            <a href="#book-call" class="btn-techto-black"><span>Build Offshore Team</span></a>
+          </div>
+        </div>
+
+        <!-- Service Item 4: Real Estate Solutions -->
+        <div class="service-row-card reveal">
+          <div class="service-left-box">
+            <div class="service-stat-num">04</div>
+            <div class="service-stat-sub">PROPTECH</div>
+          </div>
+          <div class="service-mid-content">
+            <h3 class="service-highlight-title">Real Estate & Property Growth Suite</h3>
+            <p class="service-desc-text">
+              Automate home buyer qualification, site tour scheduling, and WhatsApp CRM follow-ups engineered for developers and brokerages.
+            </p>
+          </div>
+          <div class="service-right-specs">
+            <div class="service-spec-list">
+              <div class="service-spec-item"><span class="service-spec-icon">🕒</span> 100% Instant Enquiry Response</div>
+              <div class="service-spec-item"><span class="service-spec-icon">📍</span> WhatsApp API & CRM Sync</div>
+              <div class="service-spec-item"><span class="service-spec-icon">🏷️</span> Developer Growth Package</div>
+            </div>
+            <a href="#book-call" class="btn-techto-black"><span>Automate Enquiries</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL 3-CARD FEATURE SECTION (EXACT REFERENCE LAYOUT) -->
+    <section class="editorial-features-section">
+      <div class="container">
+        <!-- Card 1: Learn from the Best -->
+        <div class="ed-card-sky reveal">
+          <div>
+            <h2 class="ed-title">Learn & Scale<br />with the Best</h2>
+            <p class="ed-subtext">Engage with industry leaders and AI specialists who are shaping the future of enterprise growth.</p>
+            <a href="ai-automation.html" class="btn-techto-outline">Explore AI Solutions</a>
+          </div>
+          <div class="ed-overlap-wrap">
+            <img src="assets/card-flag.png" class="ed-bg-image" alt="AI Innovation Flag Graphic" />
+            <img src="assets/hero-speaker.png" class="ed-fg-image" alt="AI Speaker" />
+          </div>
+        </div>
+
+        <!-- Card 2: Expand Your Network Panoramic Banner -->
+        <div class="ed-card-panoramic reveal">
+          <div class="ed-pano-left">
+            <h2 class="ed-pano-title">Expand Your<br />Global Reach</h2>
+          </div>
+          <div class="ed-pano-right">
+            <p class="ed-pano-sub">Connect with senior India engineering teams, marketers, and AI specialists.</p>
+            <a href="#book-call" class="btn-techto-black" style="background:#fff; color:#000;">Build Offshore Team</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Stay Ahead Reversed Card -->
+        <div class="ed-card-white reveal">
+          <div class="ed-overlap-wrap-left">
+            <img src="assets/card-laptop.png" class="ed-bg-image-left" alt="Matrix Laptop Code" />
+            <img src="assets/hero-community.png" class="ed-fg-image-right" alt="Global Delivery Team" />
+          </div>
+          <div>
+            <h2 class="ed-title">Stay Ahead<br />of the Curve</h2>
+            <p class="ed-subtext">Access real-time performance analytics, automated CRM pipelines, and predictive growth playbooks.</p>
+            <a href="#results" class="btn-techto-outline">View Growth Playbook</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM EDITORIAL "IMPACT IN NUMBERS" SECTION -->
+    <section class="impact-numbers-section" id="impact">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="impact-header text-center reveal">
+          <div class="editorial-tag-pill">PROVEN RESULTS</div>
+          <h2 class="impact-serif-headline">
+            Impact in Numbers 💣
+          </h2>
+          <p class="impact-subhead">
+            Quantifiable growth, automated pipelines, and measurable revenue generated for our enterprise partners worldwide.
+          </p>
+        </div>
+
+        <!-- 2x2 Responsive Impact Grid -->
+        <div class="impact-grid">
+          <!-- Stat Card 1: Revenue Generated -->
+          <div class="impact-card impact-card-sky reveal">
+            <div class="impact-card-bg-blob blob-sky"></div>
+            <div class="impact-dot" aria-hidden="true"></div>
+            <div class="impact-ray" aria-hidden="true"></div>
+            <div class="impact-line topl" aria-hidden="true"></div>
+            <div class="impact-line bottoml" aria-hidden="true"></div>
+            <div class="impact-line leftl" aria-hidden="true"></div>
+            <div class="impact-line rightl" aria-hidden="true"></div>
+            <div class="impact-card-inner">
+              <div class="impact-top-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>CLIENT REVENUE</span>
+              </div>
+              <div class="impact-number-wrap">
+                <span class="impact-number" data-target="8958526" data-prefix="$" data-suffix="+">$0</span>
+              </div>
+              <h3 class="impact-label">Revenue Generated for Clients</h3>
+              <p class="impact-desc">Direct attributable revenue expansion across performance channels and AI funnels.</p>
+            </div>
+          </div>
+
+          <!-- Stat Card 2: Total Leads Generated -->
+          <div class="impact-card impact-card-yellow reveal" style="transition-delay: 0.1s;">
+            <div class="impact-card-bg-blob blob-yellow"></div>
+            <div class="impact-dot" aria-hidden="true"></div>
+            <div class="impact-ray" aria-hidden="true"></div>
+            <div class="impact-line topl" aria-hidden="true"></div>
+            <div class="impact-line bottoml" aria-hidden="true"></div>
+            <div class="impact-line leftl" aria-hidden="true"></div>
+            <div class="impact-line rightl" aria-hidden="true"></div>
+            <div class="impact-card-inner">
+              <div class="impact-top-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>QUALIFIED PIPELINE</span>
+              </div>
+              <div class="impact-number-wrap">
+                <span class="impact-number" data-target="20000" data-suffix="+">0</span>
+              </div>
+              <h3 class="impact-label">Total Leads Generated</h3>
+              <p class="impact-desc">High-intent B2B and consumer enquiries verified through automated voice and web agents.</p>
+            </div>
+          </div>
+
+          <!-- Stat Card 3: Trusted Global Clients -->
+          <div class="impact-card impact-card-purple reveal" style="transition-delay: 0.2s;">
+            <div class="impact-card-bg-blob blob-purple"></div>
+            <div class="impact-dot" aria-hidden="true"></div>
+            <div class="impact-ray" aria-hidden="true"></div>
+            <div class="impact-line topl" aria-hidden="true"></div>
+            <div class="impact-line bottoml" aria-hidden="true"></div>
+            <div class="impact-line leftl" aria-hidden="true"></div>
+            <div class="impact-line rightl" aria-hidden="true"></div>
+            <div class="impact-card-inner">
+              <div class="impact-top-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <span>GLOBAL FOOTPRINT</span>
+              </div>
+              <div class="impact-number-wrap">
+                <span class="impact-number" data-target="120" data-suffix="+">0</span>
+              </div>
+              <h3 class="impact-label">Trusted Global Clients</h3>
+              <p class="impact-desc">Partnerships spanning tech startups, real estate developers, and enterprise brands globally.</p>
+            </div>
+          </div>
+
+          <!-- Stat Card 4: Years of Track Record -->
+          <div class="impact-card impact-card-mint reveal" style="transition-delay: 0.3s;">
+            <div class="impact-card-bg-blob blob-mint"></div>
+            <div class="impact-dot" aria-hidden="true"></div>
+            <div class="impact-ray" aria-hidden="true"></div>
+            <div class="impact-line topl" aria-hidden="true"></div>
+            <div class="impact-line bottoml" aria-hidden="true"></div>
+            <div class="impact-line leftl" aria-hidden="true"></div>
+            <div class="impact-line rightl" aria-hidden="true"></div>
+            <div class="impact-card-inner">
+              <div class="impact-top-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>PROVEN EXCELLENCE</span>
+              </div>
+              <div class="impact-number-wrap">
+                <span class="impact-number" data-target="8" data-suffix="+">0</span>
+              </div>
+              <h3 class="impact-label">Years of Proven Track Record</h3>
+              <p class="impact-desc">Over 8 years of relentless innovation in offshore delivery, digital ad strategy, and AI automation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REACT BITS SCROLL VELOCITY COMPONENT SECTION -->
+    <section class="scroll-velocity-section">
+      <!-- React Bits DotField Interactive Background Canvas -->
+      <div class="dot-field-container" id="dot-field-canvas-container" aria-hidden="true">
+        <canvas id="dot-field-canvas"></canvas>
+        <svg class="dot-field-svg">
+          <defs>
+            <radialGradient id="dot-field-glow-grad">
+              <stop offset="0%" stop-color="rgba(212, 255, 0, 0.3)" />
+              <stop offset="100%" stop-color="transparent" />
+            </radialGradient>
+          </defs>
+          <circle id="dot-field-glow-circle" cx="-9999" cy="-9999" r="180" fill="url(#dot-field-glow-grad)" style="opacity: 0; transition: opacity 0.3s ease;" />
+        </svg>
+      </div>
+
+      <!-- Velocity Row 1 (Left to Right) -->
+      <div class="parallax">
+        <div class="scroller velocity-row-1">
+          <span>AI AUTOMATION ⚡</span>
+          <span>PERFORMANCE MARKETING 🚀</span>
+          <span>GLOBAL DELIVERY SQUADS 🌐</span>
+          <span>OFFSHORE ENGINEERING ⚡</span>
+          <span>AI AUTOMATION ⚡</span>
+          <span>PERFORMANCE MARKETING 🚀</span>
+          <span>GLOBAL DELIVERY SQUADS 🌐</span>
+          <span>OFFSHORE ENGINEERING ⚡</span>
+        </div>
+      </div>
+
+      <!-- Velocity Row 2 (Right to Left) -->
+      <div class="parallax">
+        <div class="scroller velocity-row-2">
+          <span>SCALABLE ENTERPRISE GROWTH ⚡</span>
+          <span>24/7 AI VOICE AGENTS 🚀</span>
+          <span>INDIA DELIVERY HUB 🌐</span>
+          <span>PROPTECH AUTOMATION ⚡</span>
+          <span>SCALABLE ENTERPRISE GROWTH ⚡</span>
+          <span>24/7 AI VOICE AGENTS 🚀</span>
+          <span>INDIA DELIVERY HUB 🌐</span>
+          <span>PROPTECH AUTOMATION ⚡</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW SHOWCASE SECTION 1: GLOBAL DELIVERY HUB -->
+    <section class="showcase-image-section">
+      <div class="container">
+        <div class="img-feature-container reveal reveal-scale">
+          <div class="img-feature-visual">
+            <img src="assets/global-delivery.png" alt="Global Delivery Engineering Team in India" loading="lazy" />
+            <div class="img-overlay-tag">⚡ DEDICATED INDIA TEAMS</div>
+          </div>
+          <div class="img-feature-content">
+            <h2>Scalable Global Delivery & Dedicated Engineering</h2>
+            <p>
+              Scale your development, performance marketing, and BPO operations effortlessly with Webbit's dedicated India-based specialists. Achieve up to 60% operational overhead savings without compromising quality or speed.
+            </p>
+            <div class="img-stats-row">
+              <div class="img-stat-box">
+                <div class="img-stat-num">60%</div>
+                <div class="img-stat-label">Cost Efficiency</div>
+              </div>
+              <div class="img-stat-box">
+                <div class="img-stat-num">24/7</div>
+                <div class="img-stat-label">Coverage & Support</div>
+              </div>
+              <div class="img-stat-box">
+                <div class="img-stat-num">&lt; 14 Days</div>
+                <div class="img-stat-label">Team Onboarding</div>
+              </div>
+            </div>
+            <a href="#book-call" class="btn btn-gradient-cta">Build Your Offshore Team</a>
+          </div>
+        </div>
+
+        <!-- NEW SHOWCASE SECTION 2: MARKETING & AI ANALYTICS -->
+        <div class="img-feature-container reverse reveal reveal-scale">
+          <div class="img-feature-content">
+            <h2>Data-Driven Funnels & Performance Analytics</h2>
+            <p>
+              Maximize revenue return with multi-channel ad campaigns on Google, Meta, and LinkedIn. Our continuous AI optimization and conversion rate audit deliver predictable, scalable lead acquisition.
+            </p>
+            <div class="img-stats-row">
+              <div class="img-stat-box">
+                <div class="img-stat-num">+340%</div>
+                <div class="img-stat-label">Lead Growth</div>
+              </div>
+              <div class="img-stat-box">
+                <div class="img-stat-num">4.8x</div>
+                <div class="img-stat-label">Average ROAS</div>
+              </div>
+              <div class="img-stat-box">
+                <div class="img-stat-num">100%</div>
+                <div class="img-stat-label">Transparent Reporting</div>
+              </div>
+            </div>
+            <a href="#book-call" class="btn btn-dark">Launch Growth Campaign</a>
+          </div>
+          <div class="img-feature-visual">
+            <img src="assets/marketing-analytics.png" alt="Performance Marketing Analytics Interface" loading="lazy" />
+            <div class="img-overlay-tag">📈 CONVERSION ENGINE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY BUSINESSES CHOOSE WEBBIT (BENEFITS NODES) -->
+    <section class="membership-section" id="why-webbit">
+      <div class="container">
+        <div class="membership-header text-center" style="display: block;">
+          <h2 class="membership-title" style="margin-bottom: 12px;">Why Businesses Choose Webbit</h2>
+          <p class="section-subhead">Engineered for speed, transparency, and high ROI execution.</p>
+        </div>
+
+        <!-- Node Diagram Layout -->
+        <div class="benefits-nodes-grid" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="benefit-node-card">
+            <div class="node-icon-box bg-leaf">⚡</div>
+            <h3 class="node-title">AI-First Approach</h3>
+            <p class="node-desc">We integrate AI into marketing and operations to improve efficiency and customer experience.</p>
+          </div>
+          <div class="benefit-node-card">
+            <div class="node-icon-box bg-ticket">📈</div>
+            <h3 class="node-title">Results-Driven</h3>
+            <p class="node-desc">Every strategy is built around measurable business outcomes and direct ROI.</p>
+          </div>
+          <div class="benefit-node-card">
+            <div class="node-icon-box bg-tag">💬</div>
+            <h3 class="node-title">Transparent Communication</h3>
+            <p class="node-desc">Clear reporting, dedicated project managers, and regular performance updates.</p>
+          </div>
+          <div class="benefit-node-card">
+            <div class="node-icon-box bg-slack">🌐</div>
+            <h3 class="node-title">Global Delivery</h3>
+            <p class="node-desc">Strategic planning with high-quality execution by our experienced India team for faster turnaround.</p>
+          </div>
+          <div class="benefit-node-card">
+            <div class="node-icon-box bg-leaf">🚀</div>
+            <h3 class="node-title">Scalable Teams</h3>
+            <p class="node-desc">Scale resources seamlessly as your business grows without the overhead of traditional hiring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES WE SERVE -->
+    <section class="upcoming-section" id="industries">
+      <div class="container">
+        <div class="upcoming-header">
+          <h2 class="upcoming-title">Industries We Serve 🏢</h2>
+          <div class="upcoming-tabs">
+            <button class="up-tab active">All Industries</button>
+            <button class="up-tab">Real Estate</button>
+            <button class="up-tab">Services & SaaS</button>
+          </div>
+        </div>
+
+        <div class="industry-grid">
+          <div class="ind-pill-card"><span>🏢</span> Real Estate Developers</div>
+          <div class="ind-pill-card"><span>🏡</span> Property Management</div>
+          <div class="ind-pill-card"><span>📢</span> Marketing Agencies</div>
+          <div class="ind-pill-card"><span>🏥</span> Healthcare</div>
+          <div class="ind-pill-card"><span>⚖️</span> Legal</div>
+          <div class="ind-pill-card"><span>💼</span> Professional Services</div>
+          <div class="ind-pill-card"><span>🛒</span> E-commerce</div>
+          <div class="ind-pill-card"><span>💻</span> Technology & SaaS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PROCESS (STEPS) -->
+    <section class="sponsors-section" id="process" style="background: #ffffff; padding: 80px 0;">
+      <div class="container">
+        <div class="sponsors-header text-center">
+          <span class="section-tag">METHODOLOGY</span>
+          <h2 class="sponsors-headline">Our 4-Step Growth Process</h2>
+        </div>
+
+        <div class="process-steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3>Discover</h3>
+            <p>We understand your business, goals, target audience, and operational challenges.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3>Plan</h3>
+            <p>We develop a customized growth strategy and technology roadmap built for ROI.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3>Build</h3>
+            <p>Our global specialists execute with precision, speed, and continuous QA.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h3>Optimize</h3>
+            <p>We continuously improve campaign & workflow performance using real-time data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES & TESTIMONIAL BANNER -->
+    <section class="testimonial-section" id="results">
+      <div class="container">
+        <div class="testimonial-banner-box">
+          <h2 class="testimonial-headline">Real Results & Measurable Outcomes ❝</h2>
+
+          <div class="testimonial-content-wrap">
+            <div class="testimonial-avatar-col">
+              <div class="avatar-ring">
+                <div class="avatar-inner">
+                  <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="50" fill="#111"/><circle cx="50" cy="38" r="18" fill="#d4ff00"/><path d="M20 85C20 65 35 60 50 60C65 60 80 65 80 85" fill="#d4ff00"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-quote-col">
+              <p class="quote-text">
+                "Webbit transformed our qualified enquiry volume by +340% within 90 days using automated AI voice qualification and high-converting campaign landing pages."
+              </p>
+              <div class="quote-author">
+                <strong>David Miller</strong> — <span>VP Growth, Apex Real Estate Developments</span>
+              </div>
+
+              <div class="testimonial-tabs-bar">
+                <button class="test-tab active">Real Estate</button>
+                <button class="test-tab">Healthcare AI</button>
+                <button class="test-tab">Offshore Support</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="faq-header text-center">
+          <h2 class="faq-headline">Frequently Asked Questions</h2>
+          <p class="faq-subhead">Everything you need to know about our services and delivery model.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>How quickly can we start a project or build an offshore team?</h3>
+            <p>Most AI automation and digital marketing projects launch within 5–7 business days. Dedicated offshore engineering teams can be onboarded and active in &lt; 14 days.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How do you ensure quality with an India delivery center?</h3>
+            <p>All projects are managed by senior North American account leads paired with dedicated India specialists. We enforce strict QA protocols, daily Slack syncs, and transparent performance dashboards.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What industries do you specialize in?</h3>
+            <p>Our core verticals include Real Estate Developers, Tech & SaaS Startups, Marketing Agencies, Healthcare, and Professional Service Providers.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is my customer data secure with AI Automation?</h3>
+            <p>Yes. We implement enterprise-grade encryption, zero data-retention API policies, and SOC2/HIPAA compliance standards across all automated workflow integrations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL HERO CALL TO ACTION -->
+    <section class="final-cta-section" id="book-call">
+      <div class="container text-center">
+        <span class="editorial-tag-pill">START SCALABLE GROWTH</span>
+        <h2 class="final-cta-headline">Ready to Scale Your Enterprise with AI & Global Delivery?</h2>
+        <p class="final-cta-subhead">Book a complimentary 30-minute growth strategy consultation with our senior team.</p>
+        <div class="final-cta-box">
+          <a href="#" class="btn btn-gradient-cta btn-xl">Book Your Strategy Call Now</a>
+          <span class="cta-note">No obligation • Custom growth roadmap included</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIANT BRAND TYPOGRAPHY BANNER -->
+    <section class="giant-brand-banner">
+      <div class="giant-logo-wrap">
+        <h1 class="giant-logo-text">WEBBIT</h1>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-section">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <div class="footer-col-news">
+          <div class="brand-logo-wrap" style="margin-bottom: 16px;">
+            <div class="brand-logo-row">
+              <span class="logo-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5L10 19L14 10L18 19L22 5H18L15 14L12 7L9 14L6 5H4Z" fill="#111"/></svg></span>
+              <span class="logo-text" style="color: #fff;">WEBBIT</span>
+            </div>
+            <span class="brand-tagline">AI • Growth • Outsourcing</span>
+          </div>
+          <p style="color: #a1a1aa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px;">
+            Helping businesses worldwide scale through technology, marketing, and expert global delivery.
+          </p>
+        </div>
+
+        <div class="footer-col-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">AI Automation</a></li>
+            <li><a href="#services">Performance Marketing</a></li>
+            <li><a href="#services">Website Development</a></li>
+            <li><a href="#services">Real Estate Solutions</a></li>
+            <li><a href="#services">Offshore Teams</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#why-webbit">Why Webbit</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#results">Case Studies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col-links">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#book-call">Book Strategy Call</a></li>
+            <li><a href="#">India Delivery Center</a></li>
+            <li><a href="#">Global Operations</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="copyright">© 2026 Webbit. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn">LN</a>
+          <a href="#" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="GitHub">GH</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
