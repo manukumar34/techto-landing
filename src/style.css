@@ -2549,3 +2549,71 @@ body.cursor-hover .smooth-cursor-follower {
 .log-line { color: #94a3b8; }
 .text-green { color: #10b981; }
 .text-blue { color: #38bdf8; }
+
+/* ==========================================================================
+   REACT BITS CIRCULAR TEXT COMPONENT STYLING
+   ========================================================================== */
+
+.circular-text-wrap {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  z-index: 15;
+}
+
+.circular-text {
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+}
+
+.circular-text span {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.5s cubic-bezier(0, 0, 0, 1);
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+}
+
+.circular-center-badge {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #000000;
+  color: #d4ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 5;
+  font-size: 1.2rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease;
+}
+
+.circular-text-wrap:hover .circular-center-badge {
+  transform: scale(1.15) rotate(45deg);
+  background: #d4ff00;
+  color: #000000;
+}
