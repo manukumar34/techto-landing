@@ -621,4 +621,190 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeDotCanvas);
     requestAnimationFrame(tickDotField);
   }
+
+  // ==========================================================================
+  // REACT BITS AURORA WEBGL SHADER ENGINE
+  // ==========================================================================
+  const auroraContainer = document.getElementById('aurora-canvas-container');
+  const auroraCanvas = document.getElementById('aurora-canvas');
+
+  if (auroraContainer && auroraCanvas) {
+    const gl = auroraCanvas.getContext('webgl2') || auroraCanvas.getContext('webgl');
+
+    if (gl) {
+      const vertShaderSource = `
+        attribute vec2 position;
+        void main() {
+          gl_Position = vec4(position, 0.0, 1.0);
+        }
+      `;
+
+      const fragShaderSource = `
+        precision highp float;
+        uniform float uTime;
+        uniform float uAmplitude;
+        uniform vec3 uColorStops[3];
+        uniform vec2 uResolution;
+        uniform float uBlend;
+
+        vec3 permute(vec3 x) {
+          return mod(((x * 34.0) + 1.0) * x, 289.0);
+        }
+
+        float snoise(vec2 v){
+          const vec4 C = vec4(
+              0.211324865405187, 0.366025403784439,
+              -0.577350269189626, 0.024390243902439
+          );
+          vec2 i  = floor(v + dot(v, C.yy));
+          vec2 x0 = v - i + dot(i, C.xx);
+          vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+          vec4 x12 = x0.xyxy + C.xxzz;
+          x12.xy -= i1;
+          i = mod(i, 289.0);
+
+          vec3 p = permute(
+              permute(i.y + vec3(0.0, i1.y, 1.0))
+            + i.x + vec3(0.0, i1.x, 1.0)
+          );
+
+          vec3 m = max(
+              0.5 - vec3(
+                  dot(x0, x0),
+                  dot(x12.xy, x12.xy),
+                  dot(x12.zw, x12.zw)
+              ), 
+              0.0
+          );
+          m = m * m;
+          m = m * m;
+
+          vec3 x = 2.0 * fract(p * C.www) - 1.0;
+          vec3 h = abs(x) - 0.5;
+          vec3 ox = floor(x + 0.5);
+          vec3 a0 = x - ox;
+          m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+
+          vec3 g;
+          g.x  = a0.x  * x0.x  + h.x  * x0.y;
+          g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+          return 130.0 * dot(m, g);
+        }
+
+        void main() {
+          vec2 uv = gl_FragCoord.xy / uResolution;
+          
+          vec3 c0 = uColorStops[0];
+          vec3 c1 = uColorStops[1];
+          vec3 c2 = uColorStops[2];
+          
+          float factor = uv.x;
+          vec3 rampColor;
+          if (factor < 0.5) {
+            rampColor = mix(c0, c1, factor * 2.0);
+          } else {
+            rampColor = mix(c1, c2, (factor - 0.5) * 2.0);
+          }
+          
+          float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
+          height = exp(height);
+          height = (uv.y * 2.0 - height + 0.2);
+          float intensity = 0.6 * height;
+          
+          float midPoint = 0.20;
+          float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+          
+          vec3 auroraColor = intensity * rampColor;
+          gl_FragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+        }
+      `;
+
+      const createShader = (gl, type, source) => {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      };
+
+      const vertShader = createShader(gl, gl.VERTEX_SHADER, vertShaderSource);
+      const fragShader = createShader(gl, gl.FRAGMENT_SHADER, fragShaderSource);
+
+      if (vertShader && fragShader) {
+        const program = gl.createProgram();
+        gl.attachShader(program, vertShader);
+        gl.attachShader(program, fragShader);
+        gl.linkProgram(program);
+        gl.useProgram(program);
+
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+          -1, -1,
+           1, -1,
+          -1,  1,
+          -1,  1,
+           1, -1,
+           1,  1,
+        ]), gl.STATIC_DRAW);
+
+        const positionLocation = gl.getAttribLocation(program, 'position');
+        gl.enableVertexAttribArray(positionLocation);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+        const uTimeLoc = gl.getUniformLocation(program, 'uTime');
+        const uAmpLoc = gl.getUniformLocation(program, 'uAmplitude');
+        const uBlendLoc = gl.getUniformLocation(program, 'uBlend');
+        const uResLoc = gl.getUniformLocation(program, 'uResolution');
+        const uStopsLoc = gl.getUniformLocation(program, 'uColorStops');
+
+        const hexToRGB = (hex) => {
+          const r = parseInt(hex.slice(1, 3), 16) / 255;
+          const g = parseInt(hex.slice(3, 5), 16) / 255;
+          const b = parseInt(hex.slice(5, 7), 16) / 255;
+          return [r, g, b];
+        };
+
+        const stops = ['#d4ff00', '#38bdf8', '#818cf8'].flatMap(hexToRGB);
+
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+        const resizeAurora = () => {
+          const rect = auroraContainer.getBoundingClientRect();
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const w = rect.width * dpr;
+          const h = rect.height * dpr;
+          if (w === 0 || h === 0) return;
+
+          auroraCanvas.width = w;
+          auroraCanvas.height = h;
+          gl.viewport(0, 0, w, h);
+          gl.uniform2f(uResLoc, w, h);
+        };
+
+        resizeAurora();
+        window.addEventListener('resize', resizeAurora);
+
+        let startTime = performance.now();
+        const renderAurora = (now) => {
+          const t = (now - startTime) * 0.001;
+          gl.uniform1f(uTimeLoc, t);
+          gl.uniform1f(uAmpLoc, 1.2);
+          gl.uniform1f(uBlendLoc, 0.6);
+          gl.uniform3fv(uStopsLoc, new Float32Array(stops));
+
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+          requestAnimationFrame(renderAurora);
+        };
+
+        requestAnimationFrame(renderAurora);
+      }
+    }
+  }
 });
